@@ -1,0 +1,281 @@
+windows-cd / dir / mkdir / del/rmdir
+Unix----cd / Is / mkdir / rm-rf
+
+
+dir ou ls(Unix)-> mostra as pastas
+
+cd /->leva para base do diretorio C:
+
+cd .. -> retrocede na pesquisa
+
+cls ou clear(Unix) -> limpa a tela do prompt
+
+*Tecla TAB no windows auto complementa algumas coisas*
+
+mkdir nome_da_pasta-> cria uma pasta
+
+echo-> printa uma frase que você escreveu no prompt
+
+echo frase > -> esse comando faz pegar o que voce digitou e jogar em algum arquivo exemplo: C:\workspace>echo hello > hello.txt (caso não tenha o arquivo hello.txt ele vai criar)
+
+del nome do arquivo ou pasta -> deleta exemplo: C:\>del workspaceIIC:\workspace\*, Tem certeza (S/N)? S (nota: mas ele deleta arquivo não o repositorio em si)
+
+rmdir nome do repositorio /S /Q -> remove o repositorio
+
+
+
+
+=============================================================================================================================================================
+sha1 -> denominado uma serie de numero e letras 40 ao todo, ele é uma chave de indentificação de cada documento.
+openssl sha1 Prompt_comandos.txt
+SHA1(Prompt_comandos.txt)= 8fe5feee2b668196e7e33c24465948ce57eb2949
+
+blob-> Um blob (objeto binário grande) do Git é o tipo de objeto usado para armazenar o conteúdo de cada arquivo em um repositório. 
+O hash SHA-1 do arquivo é calculado e armazenado no objeto do blob.
+Esses pontos de extremidade permitem que você leia e grave objetos de blob no banco de dados do Git no GitHub.
+
+Tree-> Um objeto da árvore do Git cria a hierarquia entre arquivos em um repositório do Git. 
+Você pode usar o objeto da árvore do Git para criar a relação entre diretórios e os arquivos que eles contêm. 
+Esses pontos de extremidade permitem que você leia e grave objetos de árvore no banco de dados do Git no GitHub.
+As tree armazena os blobs e aponta.
+
+*O blob so guarda o sha1 a tree guarda o nome dos arquivos e organiza a estrutura aponta para os blobs ou outras arvores, as tree tambem tem sha1*
+
+
+=============================================================================================================================================================
+Gerar chave publica e privada: chave ssh
+victo@LAPTOP-83T5OMOG MINGW64 ~
+
+$ ssh-keygen -t ed25519 -C victorxdobro@gmail.com
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/c/Users/victo/.ssh/id_ed25519):
+Created directory '/c/Users/victo/.ssh'.
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /c/Users/victo/.ssh/id_ed25519
+Your public key has been saved in /c/Users/victo/.ssh/id_ed25519.pub
+The key fingerprint is:
+SHA256:NMhp4VUEglm//Ef2UhJNCAl+ECjS4HgoK3QAOTviPHA victorxdobro@gmail.com
+The key's randomart image is:
++--[ED25519 256]--+
+|oo.o ++.**+o ..  |
+|o+o =o.O .. .o   |
+|++oo .* = . . .  |
+|BoE  . o +   .   |
+|Bo      S   + .  |
+|.+       . o +   |
+|  .       . o .  |
+|           . .   |
+|                 |
++----[SHA256]-----+
+
+Mostra chave publica, selecionar ela etc.
+
+$cd /c/Users/victo/.ssh/
+$ ls
+id_ed25519  id_ed25519.pub
+$ cat id_ed25519.pub
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINWVjd8ifd4S+X+1C+efO3IDTjX7PAqPKGI5627yNSsz victorxdobro@gmail.com
+pwd(mostra o caminho completo)
+
+Inicalizar o ssh agents eles pegam as chaves e faz a paradas com elas:
+
+victo@LAPTOP-83T5OMOG MINGW64 ~/.ssh
+$ eval $(ssh-agent -s)
+Agent pid 1704
+
+victo@LAPTOP-83T5OMOG MINGW64 ~/.ssh
+$ ls
+id_ed25519  id_ed25519.pub
+
+victo@LAPTOP-83T5OMOG MINGW64 ~/.ssh
+$ ssh-add id_ed25519
+Identity added: id_ed25519 (victorxdobro@gmail.com)
+====================================================================================================================================================
+configurando o git para ter usuario e mail precisa fazer se for o primeiro comit na pasta ta ligado:
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio/teste-dio (master)
+$ git config --global user.email "victorxdobro@gmail.com"
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio/teste-dio (master)
+$ git config --global user.name Atomossss
+
+
+=======================================================================================================================================================
+
+Iniciando git e criando um comit:
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio
+$ mkdir teste-dio
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio
+$ ls
+teste-dio/
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio
+$ cd teste-dio/
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio/teste-dio
+$ git init
+Initialized empty Git repository in C:/workspaceDio/teste-dio/.git/
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio/teste-dio (master)
+$ ls -a
+./  ../  .git/
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio/teste-dio (master)
+$ ls cd .git/
+ls: cannot access 'cd': No such file or directory
+.git/:
+HEAD  config  description  hooks/  info/  objects/  refs/
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio/teste-dio (master)
+$ cd .git/
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio/teste-dio/.git (GIT_DIR!)
+$ ls
+HEAD  config  description  hooks/  info/  objects/  refs/
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio/teste-dio/.git (GIT_DIR!)
+$ cd..
+bash: cd..: command not found
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio/teste-dio/.git (GIT_DIR!)
+$ cd ..
+
+fecha abre de novo
+
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio
+$ git add *
+fatal: not a git repository (or any of the parent directories): .git
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio
+$ cd teste-dio/
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio/teste-dio (master)
+$ git add *
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio/teste-dio (master)
+$ git commit -m"commit inical"
+On branch master
+nothing to commit, working tree clean
+===================================================================================================================================================
+git init - cria um repositório git
+git add- adiciona o arquivo que voce criou dentro da pasta
+
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio/teste-dio (master)
+$ ls
+texto.html.txt
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio/teste-dio (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio/teste-dio (master)
+$ mkdir testes
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio/teste-dio (master)
+$ ls
+testes/  texto.html.txt
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio/teste-dio (master)
+$ mv texto.html.txt ./testes/
+
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio/teste-dio/testes (master)
+$ cd ..
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio/teste-dio (master)
+$ ls
+testes/
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio/teste-dio (master)
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        deleted:    texto.html.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        testes/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio/teste-dio (master)
+$ git add texto.html.txt testes/
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio/teste-dio (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        renamed:    texto.html.txt -> testes/texto.html.txt
+
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio/teste-dio (master)
+$ git commit -m "cria pastas testes, move arquivo para testes"
+[master 025aaf4] cria pastas testes, move arquivo para testes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename texto.html.txt => testes/texto.html.txt (100%)
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio/teste-dio (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio/teste-dio (master)
+$ ls
+testes/
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio/teste-dio (master)
+$ echo > readme.txt
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio/teste-dio (master)
+$ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        readme.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio/teste-dio (master)
+$ git add *
+warning: in the working copy of 'readme.txt', LF will be replaced by CRLF the next time Git touches it
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio/teste-dio (master)
+$ ls
+readme.txt  testes/
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio/teste-dio (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   readme.txt
+
+
+victo@LAPTOP-83T5OMOG MINGW64 /c/workspaceDio/teste-dio (master)
+$ git commit -m "seila"
+[master 83fc9a5] seila
+ 1 file changed, 1 insertion(+)
+ create mode 100644 readme.txt
+
+======================================================================================================================================================
+$ git config --list
+$ git remote add origin (nome do repositorio do github seu uma url)
+$ git remote -v (mostra lista de repositorio que voce ja usou)
+$ git push origin master (empurr tudo para o repositorio do github)
+$git pull (pucha a versao mais recente do git do repostirio)
+
+
+
+
+
+
+
